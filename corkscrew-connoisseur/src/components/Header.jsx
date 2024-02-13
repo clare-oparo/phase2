@@ -31,14 +31,15 @@ const Header = () => {
         mt={{ base: 4, md: 0 }}
       >
         <Link href="/">Home</Link>
-        <Link href="#">Shop</Link>
         <Link href="#">About</Link>
+        <Link href="/login">Login | SignUp</Link>
       </Stack>
 
       <Box display="flex" alignItems="center">
         <Button onClick={toggleColorMode} colorScheme="teal" mr={4}>
           {colorMode === 'light' ? 'Dark' : 'Light'} Mode
         </Button>
+        <Flex alignItems='center'>
         <IconButton
           icon={<FiShoppingCart />}
           size="lg"
@@ -47,6 +48,11 @@ const Header = () => {
           aria-label="Shopping Cart"
           colorScheme="teal"
         />
+        <Text>
+          0 {/* To be updated Dynamically */}
+        </Text>
+        </Flex>
+        
       </Box>
     </Flex>
   );
