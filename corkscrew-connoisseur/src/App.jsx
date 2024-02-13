@@ -1,4 +1,5 @@
 import Header from "./components/Header"
+import Catalog from "./components/Catalog"
 
 function App() {
  
@@ -6,6 +7,7 @@ function App() {
   return (
     <>
       <Header />
+      <Catalog />
     </>
   )
 }
