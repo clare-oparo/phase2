@@ -30,7 +30,7 @@ const Header = () => {
         flexGrow={1}
         mt={{ base: 4, md: 0 }}
       >
-        <Link href="#">Home</Link>
+        <Link href="/">Home</Link>
         <Link href="#">Shop</Link>
         <Link href="#">About</Link>
       </Stack>

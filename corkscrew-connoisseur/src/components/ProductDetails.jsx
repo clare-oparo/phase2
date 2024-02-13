@@ -1,15 +1,13 @@
-// src/components/ProductDetails.jsx
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Button, Text, Image, Badge, Flex, VStack, Center } from '@chakra-ui/react';
+import {
+  Box, Button, Text, Image, Badge, VStack, Center, Heading, Container, Grid, GridItem, Stack, IconButton
+} from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 
 const ProductDetails = () => {
-  const { wineId } = useParams(); // Assuming each wine has a unique 'id' property
+  const { wineId } = useParams();
   const [wine, setWine] = useState(null);
-
-  console.log (wineId);
 
   useEffect(() => {
     const fetchWineDetails = async () => {
@@ -28,21 +26,43 @@ const ProductDetails = () => {
   if (!wine) return <Text>Loading...</Text>;
 
   return (
-    <VStack spacing={4} align="stretch" m={4}>
-      <Button leftIcon={<ArrowBackIcon />} variant="link" onClick={() => window.history.back()}>
-        Back to Catalog
-      </Button>
-      <Center>
-        <Image src={wine.url} alt={wine.name} boxSize="300px" objectFit="cover" />
-      </Center>
-      <Box textAlign="center">
-        <Text fontSize="2xl" fontWeight="bold">{wine.name} - {wine.vintage}</Text>
-        <Badge colorScheme="teal" m={2}>{wine.type}</Badge>
-        <Text>{wine.region}</Text>
-        <Text fontSize="lg" m={2}>Price: ${wine.price}</Text>
-        <Button colorScheme="teal" variant="solid">Add to Cart</Button>
-      </Box>
-    </VStack>
+    <Container maxW="container.lg" py={5}>
+      <IconButton
+        icon={<ArrowBackIcon />}
+        variant="ghost"
+        aria-label="Back to Catalog"
+        onClick={() => window.history.back()}
+        mb={5}
+      />
+      <Grid
+        templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
+        gap={10}
+      >
+        <GridItem>
+          <Center>
+            <Image src={wine.url} alt={wine.name} boxSize="300px" objectFit="cover" borderRadius="lg" />
+          </Center>
+        </GridItem>
+        <GridItem>
+          <VStack align="start" spacing={4}>
+            <Heading as="h2" size="xl">{wine.name}</Heading>
+            <Text fontSize="2xl" fontWeight="bold">{wine.vintage}</Text>
+            <Badge colorScheme="purple">{wine.type}</Badge>
+            <Text fontWeight="semibold">{wine.region}</Text>
+            <Text>Produced by {wine.producer}</Text>
+            <Text fontSize="lg">Price: ${wine.price}</Text>
+            <Stack spacing={2}>
+              <Text>Description: {wine.description}</Text>
+              <Text>Food Pairing: {wine.food_pairing}</Text>
+              <Text>ABV: {wine.abv}%</Text>
+              <Text>Awards: {wine.awards}</Text>
+              <Text>Availability: {wine.availability}</Text>
+            </Stack>
+            <Button colorScheme="purple" size="lg" variant="solid">Add to Cart</Button>
+          </VStack>
+        </GridItem>
+      </Grid>
+    </Container>
   );
 };
 
