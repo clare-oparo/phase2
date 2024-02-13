@@ -9,6 +9,8 @@ const ProductDetails = () => {
   const { wineId } = useParams(); // Assuming each wine has a unique 'id' property
   const [wine, setWine] = useState(null);
 
+  console.log (wineId);
+
   useEffect(() => {
     const fetchWineDetails = async () => {
       try {

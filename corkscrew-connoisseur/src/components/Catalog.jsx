@@ -1,3 +1,4 @@
+// Catalog.jsx
 import React, { useState, useEffect } from 'react';
 import { Box, Flex, Text, Image, Badge, SimpleGrid, Button, VStack, Center } from '@chakra-ui/react';
 import WineSearch from './WineSearch';
@@ -38,18 +39,18 @@ const Catalog = () => {
     <>
       <WineSearch search={search} setSearch={setSearch} />
 
-      <Flex direction="column" align="center" justify="center" mt={8} maxW="1200px" mx="auto">
+      <Flex direction="column" align="center" justify="center" mt={0} mb={6} maxW="90%" mx="auto" boxShadow="xl" borderBottomRadius='xl' borderWidth="1px" borderTopWidth={0} borderTopColor="transparent">
         <Text fontSize="2xl" fontWeight="bold" mb={4}>
           Our Wines
         </Text>
         
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4} mb={8}>
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={3} mb={8}>
           {filteredWines.map((wine) => (
-            <Box key={wine.id} borderWidth="1px" borderRadius="lg" overflow="hidden" boxShadow="md" maxW="350px">
+            <Box key={wine.id} borderWidth="1px" borderRadius="xl" overflow="hidden" boxShadow="md" maxW="320px" pt={5}>
               <Center> {/* Center the image */}
-                <Image src={wine.url} alt={wine.name} maxH="250px" objectFit="cover" />
+                <Image src={wine.url} alt={wine.name} maxH="200px" objectFit="cover" borderRadius='md' />
               </Center>
-              <VStack p="4" spacing={4}>
+              <VStack p="4" spacing={3.5}>
                 <Center> {/* Use Center for badge alignment */}
                   <Badge borderRadius="full" px="2" colorScheme="teal">
                     {wine.type}
@@ -59,7 +60,8 @@ const Catalog = () => {
                   </Text>
                 </Center>
                 <Text textAlign="center" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
-                  {wine.name} - {wine.vintage}
+                  {/* Truncate the wine name if it's too long */}
+                  {wine.name.length > 20 ? wine.name.slice(0, 20) + '...' : wine.name}
                 </Text>
                 <Text fontSize="sm" textAlign="center">
                   Price: ${wine.price}
