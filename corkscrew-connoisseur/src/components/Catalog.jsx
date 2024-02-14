@@ -35,6 +35,28 @@ const Catalog = () => {
     wine.producer.toLowerCase().includes(search.toLowerCase())
   );
 
+  // Catalog.jsx and ProductDetails.jsx
+
+const addToCart = async (wine) => {
+  try {
+    const response = await fetch('http://localhost:3000/cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(wine),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to add item to cart');
+    }
+   
+    alert('Item added to cart');
+  } catch (error) {
+    console.error('Error adding item to cart:', error);
+    alert('Item already in cart');
+  }
+};
+
   return (
     <>
       <WineSearch search={search} setSearch={setSearch} />
@@ -69,9 +91,7 @@ const Catalog = () => {
                 <Flex justifyContent="center" alignItems="center" gap="2">
                   
                   <Button as={Link} to={`/product/${wine.id}`} leftIcon={<InfoIcon />} colorScheme="teal" variant="outline">Read More</Button>
-                  <Button leftIcon={<AddIcon />} colorScheme="teal" variant="solid">
-                    Add to Cart
-                  </Button>
+                  <Button onClick={() => addToCart(wine)} leftIcon={<AddIcon />} colorScheme="teal" variant="solid">Add to Cart</Button>
                 </Flex>
               </VStack>
             </Box>

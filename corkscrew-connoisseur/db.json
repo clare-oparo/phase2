@@ -1,5 +1,22 @@
 {
   "active-user": [],
+  "cart": [
+    {
+      "id": 1,
+      "name": "Screaming Eagle",
+      "type": "Red",
+      "region": "Napa Valley, California, USA",
+      "vintage": 2018,
+      "producer": "Screaming Eagle Winery",
+      "description": "A cult Napa Valley Cabernet Sauvignon known for its power and finesse. Intense flavors of blackberry, cassis, and mocha with velvety tannins.",
+      "food_pairing": "Best enjoyed with grilled ribeye, beef Wellington, or aged Gouda cheese.",
+      "abv": 14.8,
+      "price": 3000,
+      "awards": "98 points from Wine Spectator",
+      "availability": "Extremely limited",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm-tXFfTahpBGQEis5uBqX0zeGokKAGmeJLA&usqp=CAU"
+    }
+  ],
   "users": [
     {
       "username": "dan",
