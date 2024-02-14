@@ -22,11 +22,20 @@ const handleSubmit = async (values, actions) => {
       }
   
       // If username and password are correct, perform appropriate actions
+      await fetch('http://localhost:3000/active-user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: values.username }),
+      });
+
       console.log("Login successful");
-      // Redirect user or update UI to indicate successful login
   
       // Reset form
       actions.resetForm();
+
+      window.location.href = "/";
     } catch (error) {
       console.error("Login error:", error);
       // Display error message to the user
@@ -35,6 +44,7 @@ const handleSubmit = async (values, actions) => {
       // Reset submitting state
       actions.setSubmitting(false);
     }
+
   };
   
 
