@@ -1,11 +1,14 @@
-// Header.jsx
 import React, { useState, useEffect } from 'react';
 import { Box, Flex, Text, Button, useColorMode, Link, IconButton, Stack, Heading, Image } from '@chakra-ui/react';
-import { FiShoppingCart} from 'react-icons/fi';;
+import { FiShoppingCart } from 'react-icons/fi';
 import { HamburgerIcon } from '@chakra-ui/icons';
+import { useCart } from './CartContext'; // Import the useCart hook
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
   const [activeUser, setActiveUser] = useState(null);
+  const { cartItems, fetchCartItems } = useCart(); // Use the useCart hook
   const { colorMode, toggleColorMode } = useColorMode();
 
   useEffect(() => {
@@ -20,6 +23,7 @@ const Header = () => {
     };
 
     fetchActiveUser();
+    fetchCartItems();
   }, []);
 
   const handleLogout = async () => {
@@ -35,9 +39,9 @@ const Header = () => {
       console.error('Logout error:', error);
     }
   };
-
   return (
-    <Flex as="nav" align="center" justify="space-between" wrap="wrap" padding="1.5rem" bg="teal.500" color="white">
+    <Flex as="nav" align="center" justify="space-between" wrap="wrap" padding="1.5rem" bg="teal.500" color="white"
+    position='fixed'w='100%'zIndex={10}>
       <Flex alignItems='center'>
           <Heading
             as="h1"
@@ -89,11 +93,11 @@ const Header = () => {
           icon={<FiShoppingCart />}
           size="lg"
           isRound="true"
-          onClick={() => alert('Go to cart')}
-          aria-label="Shopping Cart"
-          colorScheme="teal"
+          onClick={() => navigate('/cart')}
+      aria-label="Shopping Cart"
+      colorScheme="teal"
         />
-          <Text ml={1}>0</Text>
+          <Text ml={1}>{cartItems}</Text>
         </Flex>
       </Box>
     </Flex>

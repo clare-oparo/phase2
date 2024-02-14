@@ -4,10 +4,12 @@ import {
   Box, Button, Text, Image, Badge, VStack, Center, Heading, Container, Grid, GridItem, Stack, IconButton
 } from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
+import { useCart } from './CartContext';
 
 const ProductDetails = () => {
   const { wineId } = useParams();
   const [wine, setWine] = useState(null);
+  const {  fetchCartItems } = useCart();
 
   useEffect(() => {
     const fetchWineDetails = async () => {
@@ -41,6 +43,7 @@ const addToCart = async (wine) => {
     }
     
     alert('Item added to cart');
+    fetchCartItems();
   } catch (error) {
     console.error('Error adding item to cart:', error);
     alert('Item already in cart');

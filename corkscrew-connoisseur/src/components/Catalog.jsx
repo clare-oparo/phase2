@@ -4,10 +4,12 @@ import { Box, Flex, Text, Image, Badge, SimpleGrid, Button, VStack, Center } fro
 import WineSearch from './WineSearch';
 import { InfoIcon, AddIcon } from '@chakra-ui/icons'; // Importing icons for buttons
 import { Link } from 'react-router-dom';
+import { useCart } from './CartContext';
 
 const Catalog = () => {
   const [wines, setWines] = useState([]);
   const [search, setSearch] = useState('');
+  const {  fetchCartItems } = useCart();
 
   useEffect(() => {
     fetchWines();
@@ -51,6 +53,7 @@ const addToCart = async (wine) => {
     }
    
     alert('Item added to cart');
+    fetchCartItems();
   } catch (error) {
     console.error('Error adding item to cart:', error);
     alert('Item already in cart');
@@ -61,7 +64,7 @@ const addToCart = async (wine) => {
     <>
       <WineSearch search={search} setSearch={setSearch} />
 
-      <Flex direction="column" align="center" justify="center" mt={0} mb={6} maxW="90%" mx="auto" boxShadow="xl" borderBottomRadius='xl' borderWidth="1px" borderTopWidth={0} borderTopColor="transparent">
+      <Flex direction="column" align="center" justify="center" mt={4} mb={6} maxW="90%" mx="auto" boxShadow="xl" borderBottomRadius='xl' borderWidth="1px" borderTopWidth={0} borderTopColor="transparent">
         <Text fontSize="2xl" fontWeight="bold" mb={4}>
           Our Wines
         </Text>

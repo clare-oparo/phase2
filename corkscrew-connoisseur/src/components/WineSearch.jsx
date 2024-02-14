@@ -1,7 +1,7 @@
 import { Box, Input } from '@chakra-ui/react';
 function WineSearch({search, setSearch}) {
     return (
-      <Box p={4} >
+      <Box px={4} pt='110px' >
         <Input
           placeholder="Search for a wine..."
           value={search}
