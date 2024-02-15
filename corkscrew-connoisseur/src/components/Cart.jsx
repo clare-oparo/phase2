@@ -55,8 +55,8 @@ const Cart = () => {
                             <Text>Price: {item.quantity * item.price}</Text>
                         </VStack>
                         <HStack>
-                            <Button colorScheme="blue" onClick={() => handleIncrease(item)}>Increase</Button>
-                            <Button colorScheme="red" onClick={() => handleDecrease(item)}>Decrease</Button>
+                            <Button colorScheme="blue" onClick={() => handleIncrease(item)}>Add</Button>
+                            <Button colorScheme="red" onClick={() => handleDecrease(item)}>Remove</Button>
                         </HStack>
                     </Flex>
                 ))}

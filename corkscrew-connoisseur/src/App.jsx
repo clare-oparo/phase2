@@ -17,7 +17,7 @@ function App() {
       <Router>
         <>
           <Header  />
-          <Box pt="64px" pb="100px">
+          <Box pt="80px" pb="100px">
             <Routes>
               <Route path="/" element={<Catalog />} />
               <Route path="/product/:wineId" element={<ProductDetails />} />
