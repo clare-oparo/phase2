@@ -1,4 +1,3 @@
-// CartContext.js
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const CartContext = createContext();
@@ -34,3 +33,4 @@ export const useCart = () => {
   }
   return context;
 };
+

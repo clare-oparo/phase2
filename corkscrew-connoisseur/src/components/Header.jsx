@@ -22,8 +22,8 @@ const Header = () => {
       }
     };
 
-    fetchActiveUser();
-    fetchCartItems();
+fetchActiveUser();
+fetchCartItems();
   }, []);
 
   const handleLogout = async () => {
@@ -33,11 +33,11 @@ const Header = () => {
         method: 'DELETE',
       });
 
-      // Update active user state
-      setActiveUser(null);
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
+  // Update active user state
+  setActiveUser(null);
+} catch (error) {
+  console.error('Logout error:', error);
+}
   };
   return (
     <Flex as="nav" align="center" justify="space-between" wrap="wrap" padding="1.5rem" bg="teal.500" color="white"
@@ -52,56 +52,56 @@ const Header = () => {
             Corkscrew Connoisseur
         </Heading>
 
-        </Flex>
-
-      <Box display={{ base: 'block', md: 'none' }} onClick={() => {}}>
-        <IconButton
-          icon={<HamburgerIcon />}
-          variant="outline"
-          aria-label="Open Menu"
-        />
-      </Box>
-
-      <Stack
-        direction={{ base: 'column', md: 'row' }}
-        display={{ base: 'none', md: 'flex' }}
-        width={{ base: 'full', md: 'auto' }}
-        alignItems="center"
-        flexGrow={1}
-        ml={10}
-        mt={{ base: 4, md: 0 }}
-        spacing={5}
-      >
-        <Link href="/">Home</Link>
-        <Link pr={10} href="#">About</Link>
-        
-        {activeUser ? (
-          <>
-            <Text>{activeUser}</Text>
-            <Link onClick={handleLogout}>Sign out</Link>
-          </>
-        ) : (
-          <Link href="/login">Login | SignUp</Link>
-        )}
-      </Stack>
-
-      <Box display="flex" alignItems="center">
-        <Button onClick={toggleColorMode} colorScheme="teal" mr={4}>
-          {colorMode === 'light' ? 'Dark' : 'Light'} Mode
-        </Button>
-        <Flex alignItems='center'>
-        <IconButton
-          icon={<FiShoppingCart />}
-          size="lg"
-          isRound="true"
-          onClick={() => navigate('/cart')}
-      aria-label="Shopping Cart"
-      colorScheme="teal"
-        />
-          <Text ml={1}>{cartItems}</Text>
-        </Flex>
-      </Box>
     </Flex>
+
+  <Box display={{ base: 'block', md: 'none' }} onClick={() => {}}>
+    <IconButton
+      icon={<HamburgerIcon />}
+      variant="outline"
+      aria-label="Open Menu"
+    />
+  </Box>
+
+  <Stack
+    direction={{ base: 'column', md: 'row' }}
+    display={{ base: 'none', md: 'flex' }}
+    width={{ base: 'full', md: 'auto' }}
+    alignItems="center"
+    flexGrow={1}
+    ml={10}
+    mt={{ base: 4, md: 0 }}
+    spacing={5}
+  >
+    <Link href="/">Home</Link>
+    <Link pr={10} href="#">About</Link>
+    
+    {activeUser ? (
+      <>
+        <Text>{activeUser}</Text>
+        <Link onClick={handleLogout}>Sign out</Link>
+      </>
+    ) : (
+      <Link href="/login">Login | SignUp</Link>
+    )}
+  </Stack>
+
+  <Box display="flex" alignItems="center">
+    <Button onClick={toggleColorMode} colorScheme="teal" mr={4}>
+      {colorMode === 'light' ? 'Dark' : 'Light'} Mode
+    </Button>
+    <Flex alignItems='center'>
+    <IconButton
+      icon={<FiShoppingCart />}
+      size="lg"
+      isRound="true"
+      onClick={() => navigate('/cart')}
+  aria-label="Shopping Cart"
+  colorScheme="teal"
+    />
+      <Text ml={1}>{cartItems}</Text>
+    </Flex>
+  </Box>
+</Flex>
   );
 };
 
