@@ -49,7 +49,7 @@ const Header = () => {
             fontWeight="bold"
             fontFamily='Dancing Script'
           >
-            Cockscrew Connoisseur
+            Corkscrew Connoisseur
         </Heading>
 
         </Flex>
@@ -74,6 +74,7 @@ const Header = () => {
       >
         <Link href="/">Home</Link>
         <Link pr={10} href="#">About</Link>
+        
         {activeUser ? (
           <>
             <Text>{activeUser}</Text>

@@ -75,6 +75,36 @@
       "awards": "95 points from Wine Spectator",
       "availability": "Widely distributed",
       "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg7kkUhcuP3yGIUaz31eOMvD90d_SncPGTFw&usqp=CAU"
+    },
+    {
+      "id": "4",
+      "name": "Château Lafite Rothschild",
+      "type": "Red",
+      "region": "Bordeaux, France",
+      "vintage": 2010,
+      "producer": "Château Lafite Rothschild",
+      "description": "A legendary Bordeaux wine known for its finesse and complexity. Notes of cassis, cedar, and graphite with silky tannins.",
+      "food_pairing": "Pairs well with roast lamb, beef tenderloin, or aged cheeses.",
+      "abv": 13.5,
+      "price": 800,
+      "awards": "95 points from Wine Spectator",
+      "availability": "Limited distribution",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN44hHolcDt3nXRd4zy8ySr1Cx6ZXLUjb31A&usqp=CAU"
+    },
+    {
+      "id": "24",
+      "name": "Domaine de la Romanée-Conti Montrachet Grand Cru",
+      "type": "White",
+      "region": "Burgundy, France",
+      "vintage": 2017,
+      "producer": "Domaine de la Romanée-Conti",
+      "description": "An extraordinary Chardonnay with unparalleled depth and complexity. Layers of ripe fruit, toasted nuts, and a hint of vanilla with a silky texture.",
+      "food_pairing": "Pairs perfectly with seared scallops, grilled lobster, or creamy pasta carbonara.",
+      "abv": 14.5,
+      "price": 2500,
+      "awards": "99 points from Wine Enthusiast",
+      "availability": "Extremely limited",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT94JC7G6YNF01x2Ft4S3VhfQ8UCiVy9eHVOA&usqp=CAU"
     }
   ],
   "users": [

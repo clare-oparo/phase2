@@ -6,10 +6,12 @@ import Catalog from './components/Catalog';
 import ProductDetails from './components/ProductDetails';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import Footer from './components/Footer';
+import About from './components/About';
 
 function App() {
   return (
-    <CartProvider> {/* Wrap your App with CartProvider */}
+    <CartProvider> 
       <Router>
         <>
           <Header  />
@@ -18,7 +20,9 @@ function App() {
             <Route path="/product/:wineId" element={<ProductDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/about" element={<About />} />
           </Routes>
+          <Footer />
         </>
       </Router>
     </CartProvider>
