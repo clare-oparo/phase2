@@ -105,6 +105,21 @@
       "awards": "99 points from Wine Enthusiast",
       "availability": "Extremely limited",
       "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT94JC7G6YNF01x2Ft4S3VhfQ8UCiVy9eHVOA&usqp=CAU"
+    },
+    {
+      "id": "6",
+      "name": "Penfolds Grange",
+      "type": "Red",
+      "region": "South Australia, Australia",
+      "vintage": 2015,
+      "producer": "Penfolds",
+      "description": "Australia's most famous wine, crafted from Shiraz grapes. Opulent and full-bodied with flavors of dark plum, licorice, and vanilla.",
+      "food_pairing": "Pairs beautifully with slow-roasted lamb, beef brisket, or aged cheddar.",
+      "abv": 14.5,
+      "price": 800,
+      "awards": "97 points from Wine Spectator",
+      "availability": "Widely distributed",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEBXwgLXyEspglXl2X7gmDAkpMBM7ZdsLpsQ&usqp=CAU"
     }
   ],
   "users": [
