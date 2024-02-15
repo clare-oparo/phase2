@@ -4,6 +4,7 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { useCart } from './CartContext'; // Import the useCart hook
 import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ fetchCartItems();
     spacing={5}
   >
     <Link href="/">Home</Link>
-    <Link pr={10} href="#">About</Link>
+    <Link as={RouterLink} to="/about" pr={10}>About</Link>
     
     {activeUser ? (
       <>
