@@ -106,7 +106,7 @@ function Cart() {
   
   return (
     <Flex alignItems="center" justifyContent="center" direction="column" pt="75px">
-      <Box mt={4} maxW="90%">
+      <Box mt={4} maxW="90%" minH='100vh'>
         <Text fontSize="2xl" fontWeight="bold" mb={2} textAlign="center">
           My Cart
         </Text>

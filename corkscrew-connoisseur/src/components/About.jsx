@@ -3,7 +3,7 @@ import { FaWineBottle } from "react-icons/fa";
 
 function About() {
   return (
-    <Box pt="100px" maxW="85%" mx="auto" textAlign="justify" boxShadow='xl' px='80px' pb={1} mb={4}>
+    <Box pt="100px" maxW="85%" mx="auto" textAlign="justify" boxShadow='xl' px='80px' pb={1} mb={4} bg='white'>
       <Heading as="h3" fontSize="3xl" mb="6" color="wine.red" fontFamily="Rancho">
         About Us
       </Heading>

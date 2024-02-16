@@ -24,10 +24,10 @@ function Details() {
     fetchWineDetails();
   }, [wineId]);
 
-  const textColor = useColorModeValue("wine.red", "white"); 
+  const textColor = useColorModeValue("wine.red", "wine.red"); 
 
   return (
-    <Box pt='90px' maxW="100%" textAlign="center">
+    <Box pt='90px' maxW="100%" textAlign="center" minH='100vh'>
       <Text fontSize="2xl" fontWeight="bold" mb={2}>
         Details
       </Text>
@@ -49,6 +49,7 @@ function Details() {
               <Button mt={5} w="full" maxW="200px"
               colorScheme="wine"
               variant="outline"
+              bg='white'
               _hover={{
                 bg: "wine.black",
                 color: "white",

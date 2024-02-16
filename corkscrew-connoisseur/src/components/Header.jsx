@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
-import { Box, Flex, Heading, IconButton, Image, Icon, Text } from "@chakra-ui/react";
-import { FaCartPlus } from "react-icons/fa";
+import { Box, Flex, Heading, IconButton, Image, Icon, Text, Button } from "@chakra-ui/react";
+import { FaCartPlus, FaSun, FaMoon } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useStore from '../store';
+import { useColorMode } from '@chakra-ui/react'; // Import useColorMode hook
 
 function Header() {
+  const { colorMode, toggleColorMode } = useColorMode();
   const bgColor = "white"
   const textColor ="wine.red"
 
@@ -57,6 +59,18 @@ function Header() {
         )}
         </Flex>
 
+        {/* Color Mode Toggle Button */}
+        <Button
+          onClick={toggleColorMode} // Toggle color mode on button click
+          variant="ghost"
+          size="md"
+          fontSize="xl"
+          color={textColor}
+          _hover={{ color: "wine.gold" }}
+          leftIcon={colorMode === 'light' ? <FaMoon /> : <FaSun />} // Show appropriate icon based on current color mode
+        >
+        </Button>
+
         {/* Cart Icon */}
         <Flex as={Link} to="/cart" alignItems="center">
           <IconButton
@@ -67,7 +81,7 @@ function Header() {
             color={textColor}
             _hover={{ color: "wine.gold" }}
           />
-          <Text ml={1}>{cartItems}</Text>
+          <Text color='black' ml={1}>{cartItems}</Text>
         </Flex>
       </Flex>
     </Box>

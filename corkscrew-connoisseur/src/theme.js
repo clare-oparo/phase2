@@ -2,7 +2,8 @@ import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
   config: {
-    initialColorMode: 'light', // Set initial color mode to light
+    initialColorMode: 'light',
+    useSystemColorMode: false, // Ensure that the system color mode is not used
   },
   fonts: {
     heading: "Playfair Display, serif",
@@ -10,13 +11,13 @@ const theme = extendTheme({
   },
   colors: {
     wine: {
-      red: "#8B0000", // Deep red, reminiscent of red wine
-      white: "#F5F5F5", // Off-white, like the color of wine labels or corks
-      gold: "#FFD700", // Golden, representing the richness of wine
-      black: "#000000", // Black, for additional contrast
-      blue: "#0000FF", // Blue, for links or primary actions
-      yellow: "#FFFF00", // Yellow, for warnings or attention-seeking elements
-      purple: "#800080", // Purple, for special or unique elements
+      red: "#8B0000",
+      white: "#F5F5F5",
+      gold: "#FFD700",
+      black: "#000000",
+      blue: "#0000FF",
+      yellow: "#FFFF00",
+      purple: "#800080",
     },
   },
   components: {
@@ -39,6 +40,18 @@ const theme = extendTheme({
             borderColor: "wine.red",
             borderWidth: "1px",
             borderStyle: "solid",
+          },
+        },
+        outline: { // Define the outline variant
+          bg: "transparent",
+          color: "black",
+          borderColor: "black",
+          borderWidth: "1px",
+          borderStyle: "solid",
+          transition: "0.25s",
+          _hover: {
+            bg: "black",
+            color: "white",
           },
         },
       },
