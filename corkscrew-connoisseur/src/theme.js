@@ -2,8 +2,7 @@ import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
   config: {
-    initialColorMode: 'light', // Initial color mode (light or dark)
-    useSystemColorMode: false, // Use system color mode (optional)
+    initialColorMode: 'light', // Set initial color mode to light
   },
   fonts: {
     heading: "Playfair Display, serif",
@@ -19,42 +18,37 @@ const theme = extendTheme({
       yellow: "#FFFF00", // Yellow, for warnings or attention-seeking elements
       purple: "#800080", // Purple, for special or unique elements
     },
-   
   },
   components: {
     Button: {
-      // Define button styles
       baseStyle: {
         fontWeight: "bold",
         borderRadius: "full",
       },
-      // Define different button variants
       variants: {
         solid: {
-          bg: "wine.red", // Background color for light mode
-          color: "white", // Text color for light mode
-          borderColor: "wine.red", // Border color on hover for light mode
-          borderWidth: "1px", // Border width
-          borderStyle: "solid", // Border style
+          bg: "wine.red",
+          color: "white",
+          borderColor: "wine.red",
+          borderWidth: "1px",
+          borderStyle: "solid",
           transition: "0.25s",
           _hover: {
-            bg: "white", 
+            bg: "white",
             color: "wine.red",
-            borderColor: "wine.red", // Border color on hover for light mode
-            borderWidth: "1px", // Border width
-            borderStyle: "solid", // Border style
+            borderColor: "wine.red",
+            borderWidth: "1px",
+            borderStyle: "solid",
           },
         },
       },
     },
     Text: {
-      // Define text styles
       baseStyle: {
         fontFamily: "body",
       },
     },
     Link: {
-      // Define link styles
       baseStyle: {
         color: "wine.red",
         _hover: {
