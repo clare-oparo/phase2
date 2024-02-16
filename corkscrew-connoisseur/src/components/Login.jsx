@@ -64,7 +64,7 @@ const handleSubmit = async (values, actions) => {
       onSubmit={handleSubmit}
     >
       {(formik) => (
-        <Flex alignItems="center" justifyContent="center" height="80vh">
+        <Flex alignItems="center" justifyContent="center" minH="100vh">
           <Box minWidth="300px">
             <Form>
               <FormControl id="username" isInvalid={formik.touched.username && formik.errors.username}>

@@ -1,108 +1,128 @@
-// Catalog.jsx
-import React, { useState, useEffect } from 'react';
-import { Box, Flex, Text, Image, Badge, SimpleGrid, Button, VStack, Center } from '@chakra-ui/react';
-import WineSearch from './WineSearch';
-import { InfoIcon, AddIcon } from '@chakra-ui/icons'; // Importing icons for buttons
-import { Link } from 'react-router-dom';
-import { useCart } from './CartContext';
+import React, { useState, useEffect } from "react";
+import { Box, Text, VStack, Image, Flex, Button, Input, Badge, HStack } from "@chakra-ui/react";
+import { InfoIcon, AddIcon } from '@chakra-ui/icons'; 
+import { Link } from "react-router-dom";
+import useStore from '../store';
 
-const Catalog = () => {
-  const [wines, setWines] = useState([]);
-  const [search, setSearch] = useState('');
-  const {  fetchCartItems } = useCart();
-
+function Catalog() {
+  const [items, setItems] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const { addToCart } = useStore()
+  
   useEffect(() => {
-    fetchWines();
+    fetch("http://localhost:3000/wines")
+      .then((response) => response.json())
+      .then((data) => setItems(data))
+      .catch((error) => console.error("Error fetching items:", error));
   }, []);
 
-  const fetchWines = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/wines');
-      const data = await response.json();
-      setWines(data);
-    } catch (error) {
-      console.error('Error fetching wines:', error);
-    }
-  };
-
-  const filteredWines = wines.filter(wine =>
-    wine.name.toLowerCase().includes(search.toLowerCase())
-    ||
-    wine.type.toLowerCase().includes(search.toLowerCase())
-    ||
-    wine.description.toLowerCase().includes(search.toLowerCase())
-    ||
-    wine.region.toLowerCase().includes(search.toLowerCase()) 
-    ||
-    wine.producer.toLowerCase().includes(search.toLowerCase())
-  );
-
-  // Catalog.jsx and ProductDetails.jsx
-
-const addToCart = async (wine) => {
-  try {
-    const response = await fetch('http://localhost:3000/cart', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(wine),
-    });
-    if (!response.ok) {
-      throw new Error('Failed to add item to cart');
-    }
-   
-    alert('Item added to cart');
-    fetchCartItems();
-  } catch (error) {
-    console.error('Error adding item to cart:', error);
-    alert('Item already in cart');
-  }
-};
+  const filteredItems = items.filter(item => {
+    const searchQueryLowerCase = searchQuery.toLowerCase();
+    return (
+      item.type.toLowerCase().includes(searchQueryLowerCase) ||
+      item.name.toLowerCase().includes(searchQueryLowerCase) ||
+      item.description.toLowerCase().includes(searchQueryLowerCase) ||
+      item.region.toLowerCase().includes(searchQueryLowerCase) ||
+      item.producer.toLowerCase().includes(searchQueryLowerCase)
+    );
+  });
+  
 
   return (
-    <>
-      <WineSearch search={search} setSearch={setSearch} />
-
-      <Flex direction="column" align="center" justify="center" mt={4} mb={6} maxW="90%" mx="auto" boxShadow="xl" borderBottomRadius='xl' borderWidth="1px" borderTopWidth={0} borderTopColor="transparent">
-        <Text fontSize="2xl" fontWeight="bold" mb={4}>
-          Our Wines
+    <Flex alignItems='center' justifyContent='center' direction='column' pt='75px'>
+      <Box mt={4} maxW="90%" >
+        <Text fontSize="2xl" fontWeight="bold" mb={2} textAlign="center">
+          Catalog
         </Text>
-        
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={3} mb={8}>
-          {filteredWines.map((wine) => (
-            <Box key={wine.id} borderWidth="1px" borderRadius="xl" overflow="hidden" boxShadow="md" maxW="320px" pt={5}>
-              <Center> {/* Center the image */}
-                <Image src={wine.url} alt={wine.name} maxH="200px" objectFit="cover" borderRadius='md' />
-              </Center>
-              <VStack p="4" spacing={3.5}>
-                <Center> {/* Use Center for badge alignment */}
-                  <Badge borderRadius="full" px="2" colorScheme="teal">
-                    {wine.type}
+        <Flex justifyContent='center' alignItems='center'>
+          <Input
+            placeholder="Search wines"
+            variant="filled"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            mb={5}
+            maxW='95%'
+            boxShadow="md"
+          />
+        </Flex>
+        <Flex flexWrap="wrap" justifyContent="center" alignItems="stretch" gap={4} boxShadow='2xl' pb={5} mb={5}>
+          {filteredItems.map((item) => (
+            <Box
+            key={item.id}
+            p={4}
+            bg="white"
+            borderRadius="md"
+            boxShadow="md"
+            textAlign="center"
+            width="250px"
+            minHeight="400px"
+            mb={4}
+            borderWidth="1px"
+            borderColor="gray.200"
+            transition="all 0.2s"
+              _hover={{
+                boxShadow: "lg",
+                borderColor: "wine.red",
+              }}
+            >
+              <Image
+                src={item.url}
+                alt={item.name}
+                objectFit="cover"
+                borderTopRadius="md"
+                maxHeight="200px"
+                maxW='160px'
+              />
+              <VStack spacing={2} align="start" mt={4}>
+                <HStack alignItems='start'>
+                  <Badge borderRadius="full"  colorScheme="wine">
+                    {item.type}
                   </Badge>
-                  <Text ml="2" textTransform="uppercase" fontSize="sm" fontWeight="bold" color="teal.800">
-                    {wine.region}
+                  <Text color="wine.red" isTruncated>
+                    {/* Truncate the wine name if it's too long */}
+                    {item.name.length > 19 ? item.name.slice(0, 19) + '...' : item.name}
                   </Text>
-                </Center>
-                <Text textAlign="center" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
-                  {/* Truncate the wine name if it's too long */}
-                  {wine.name.length > 20 ? wine.name.slice(0, 20) + '...' : wine.name}
+                </HStack>
+                <Text textAlign="left" textTransform="uppercase" fontSize="sm" fontWeight="bold" color="wine.red">
+                  {item.region}
                 </Text>
-                <Text fontSize="sm" textAlign="center">
-                  Price: ${wine.price}
+                <Text fontSize="md" fontWeight="bold"  color="wine.red">
+                  ${item.price}
                 </Text>
-                <Flex justifyContent="center" alignItems="center" gap="2">
-                  
-                  <Button as={Link} to={`/product/${wine.id}`} leftIcon={<InfoIcon />} colorScheme="teal" variant="outline">Read More</Button>
-                  <Button onClick={() => addToCart(wine)} leftIcon={<AddIcon />} colorScheme="teal" variant="solid">Add to Cart</Button>
-                </Flex>
+                <Button
+                  as={Link}
+                  to={`/product/${item.id}`}
+                  leftIcon={<InfoIcon />}
+                  colorScheme="wine"
+                  variant="outline"
+                  size="sm"
+                  py={2}
+                  px={3}
+                  _hover={{
+                    bg: "wine.black",
+                    color: "white",
+                  }}
+                >
+                  Read More
+                </Button>
+                <Button
+                  onClick={() => addToCart(item)}
+                  leftIcon={<AddIcon />}
+                  colorScheme="wine"
+                  variant="solid"
+                  size="sm"
+                  py={2}
+                  px={3}
+                >
+                  Add to Cart
+                </Button>
               </VStack>
             </Box>
           ))}
-        </SimpleGrid>
-      </Flex>
-    </>
+        </Flex>
+      </Box>
+    </Flex>
   );
-};
+}
 
 export default Catalog;

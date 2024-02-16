@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Stack, Text, Link, useColorModeValue, Icon, HStack, Divider, VStack } from '@chakra-ui/react';
+import { Box, Container, Stack, Text, Link, Icon, HStack, Divider, VStack } from '@chakra-ui/react';
 import { FiMapPin, FiPhone, FiMail } from 'react-icons/fi';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
@@ -7,13 +7,13 @@ import { SiTiktok } from 'react-icons/si';
 const Footer = () => {
   return (
     <Box
-      bg={useColorModeValue('teal.700', 'teal.900')}
-      color={useColorModeValue('white', 'gray.200')}
+      bg='white'
+      color='wine.red'
       mt="auto"
       py={{ base: 4, md: 5 }}
     >
       <Container as={Stack} maxW={'6xl'} spacing={4}>
-        <Divider borderColor={useColorModeValue('teal.300', 'teal.500')} my={4} />
+        <Divider borderColor='wine.red' my={4} />
 
         <VStack spacing={4}>
           

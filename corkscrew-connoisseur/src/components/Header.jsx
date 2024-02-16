@@ -1,109 +1,77 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Flex, Text, Button, useColorMode, Link, IconButton, Stack, Heading, Image } from '@chakra-ui/react';
-import { FiShoppingCart } from 'react-icons/fi';
-import { HamburgerIcon } from '@chakra-ui/icons';
-import { useCart } from './CartContext'; // Import the useCart hook
-import { useNavigate } from 'react-router-dom';
-import { Link as RouterLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Box, Flex, Heading, IconButton, Image, Icon, Text } from "@chakra-ui/react";
+import { FaCartPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import useStore from '../store';
 
-const Header = () => {
-  const navigate = useNavigate();
-  const [activeUser, setActiveUser] = useState(null);
-  const { cartItems, fetchCartItems } = useCart(); // Use the useCart hook
-  const { colorMode, toggleColorMode } = useColorMode();
+function Header() {
+  const bgColor = "white"
+  const textColor ="wine.red"
+
+  const { cartItems, fetchCartItems, fetchActiveUser, activeUser, logout } = useStore();
 
   useEffect(() => {
-    const fetchActiveUser = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/active-user');
-        const userData = await response.json();
-        setActiveUser(userData[0].username);
-      } catch (error) {
-        console.error('Error fetching active user:', error);
-      }
-    };
-
-fetchActiveUser();
-fetchCartItems();
-  }, []);
+    fetchActiveUser();
+    fetchCartItems();
+  }, [cartItems]); // Trigger the effect whenever cartItems changes
 
   const handleLogout = async () => {
-    try {
-      // Send DELETE request to sign out
-      await fetch('http://localhost:3000/active-user/1', {
-        method: 'DELETE',
-      });
-
-  // Update active user state
-  setActiveUser(null);
-} catch (error) {
-  console.error('Logout error:', error);
-}
+    logout(); // Call the logout function from useStore
   };
+
   return (
-    <Flex as="nav" align="center" justify="space-between" wrap="wrap" padding="1.5rem" bg="teal.500" color="white"
-    position='fixed'w='100%'zIndex={10}>
-      <Flex alignItems='center'>
-          <Heading
-            as="h1"
-            fontSize={{ base: "xl", md: "3xl" }} // Adjust font size based on screen size
-            fontWeight="bold"
-            fontFamily='Dancing Script'
-          >
-            Corkscrew Connoisseur
+    <Box bg={bgColor} boxShadow="sm" py={1} position='fixed' w='100%' zIndex={10}>
+      <Flex align="center" justify="space-between" maxW="6xl" mx="auto">
+
+        <Flex alignItems='center'>
+        <Image
+              src='src/assets/bottle and glass.avif'
+              alt='Bootle $ glass icon'
+              objectFit="contain"
+              height='69px'
+            />
+         <Heading
+          as="h1"
+          fontSize={{ base: "xl", md: "5xl" }}
+          fontWeight="bold" // Increase the font weight to extrabold
+          color={textColor}
+          fontFamily="Rancho"
+        >
+          Corkscrew Connoisseur
         </Heading>
 
-    </Flex>
+        </Flex>
+       
 
-  <Box display={{ base: 'block', md: 'none' }} onClick={() => {}}>
-    <IconButton
-      icon={<HamburgerIcon />}
-      variant="outline"
-      aria-label="Open Menu"
-    />
-  </Box>
+        {/* Navigation Links */}
+        <Flex>
+          <Box as={Link} to="/" mr={10} fontSize='18px'  color={textColor} _hover={{ textDecoration: "underline" }}>Home</Box>
+          <Box as={Link} to="/about" mr={10} fontSize='18px' color={textColor} _hover={{ textDecoration: "underline" }}>About</Box>
+          {activeUser ? (
+          <>
+            <Box as={Link}  mr={10}  fontSize='18px' color={textColor} _hover={{ textDecoration: "underline" }} onClick={handleLogout}>Sign out</Box>
+            <Text  fontWeight='bold' fontSize='18px' color={textColor} >{activeUser}</Text>
+          </>
+        ) : (
+          <Box as={Link} to="/login" mr={10}  fontSize='18px' color={textColor} _hover={{ textDecoration: "underline" }}>Login | SignUp</Box>
+        )}
+        </Flex>
 
-  <Stack
-    direction={{ base: 'column', md: 'row' }}
-    display={{ base: 'none', md: 'flex' }}
-    width={{ base: 'full', md: 'auto' }}
-    alignItems="center"
-    flexGrow={1}
-    ml={10}
-    mt={{ base: 4, md: 0 }}
-    spacing={5}
-  >
-    <Link href="/">Home</Link>
-    <Link as={RouterLink} to="/about" pr={10}>About</Link>
-    
-    {activeUser ? (
-      <>
-        <Text>{activeUser}</Text>
-        <Link onClick={handleLogout}>Sign out</Link>
-      </>
-    ) : (
-      <Link href="/login">Login | SignUp</Link>
-    )}
-  </Stack>
-
-  <Box display="flex" alignItems="center">
-    <Button onClick={toggleColorMode} colorScheme="teal" mr={4}>
-      {colorMode === 'light' ? 'Dark' : 'Light'} Mode
-    </Button>
-    <Flex alignItems='center'>
-    <IconButton
-      icon={<FiShoppingCart />}
-      size="lg"
-      isRound="true"
-      onClick={() => navigate('/cart')}
-  aria-label="Shopping Cart"
-  colorScheme="teal"
-    />
-      <Text ml={1}>{cartItems}</Text>
-    </Flex>
-  </Box>
-</Flex>
+        {/* Cart Icon */}
+        <Flex as={Link} to="/cart" alignItems="center">
+          <IconButton
+            aria-label="Shopping Cart"
+            icon={<Icon as={FaCartPlus} boxSize={7} />} 
+            bg="transparent"
+            borderStyle='none'
+            color={textColor}
+            _hover={{ color: "wine.gold" }}
+          />
+          <Text ml={1}>{cartItems}</Text>
+        </Flex>
+      </Flex>
+    </Box>
   );
-};
+}
 
 export default Header;

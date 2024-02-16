@@ -1,25 +1,64 @@
-import React from 'react';
-import { Box, Container, Heading, Text, VStack } from '@chakra-ui/react';
+import { Box, Heading, Text, Divider, Icon, Flex } from "@chakra-ui/react";
+import { FaWineBottle } from "react-icons/fa";
 
-
-const About = () => {
+function About() {
   return (
-    <Container maxW="container.md" py={10}>
-      <VStack spacing={5}>
-        <Heading as="h1">About Corkscrew Connoisseur</Heading>
-        
-        <Text>
-          Welcome to Corkscrew Connoisseur, the best place to discover and enjoy the finest wines. Our mission is to bring the world's best wines right to your doorstep, providing detailed knowledge and exceptional customer service.
+    <Box pt="100px" maxW="85%" mx="auto" textAlign="justify" boxShadow='xl' px='80px' pb={1} mb={4}>
+      <Heading as="h3" fontSize="3xl" mb="6" color="wine.red" fontFamily="Rancho">
+        About Us
+      </Heading>
+      <Text fontSize="xl" mb="8" color="gray.700">
+        Welcome to Cockscrew Connoisseur, your premier destination for discovering and enjoying the world's finest wines. Our passion for wine runs deep, and we're dedicated to sharing that passion with you. Whether you're a seasoned oenophile or just beginning your journey into the world of wine, we're here to guide you every step of the way.
+      </Text>
+
+      <Divider mb="8" />
+
+      <Heading as="h3" fontSize="3xl" mb="6" color="wine.red" fontFamily="Rancho">
+        Our Mission
+      </Heading>
+      <Text fontSize="xl" mb="8" color="gray.700">
+        At Cockscrew Connoisseur, our mission is simple: to provide you with an unparalleled wine-buying experience. We strive to offer a carefully curated selection of wines from around the globe, each chosen for its exceptional quality and unique character. We believe that every bottle tells a story, and we're here to help you discover the perfect wine for any occasion.
+      </Text>
+
+      <Divider mb="8" />
+
+      <Heading as="h3" fontSize="3xl" mb="6" color="wine.red" fontFamily="Rancho">
+        Our Team
+      </Heading>
+      <Text fontSize="xl" mb="4" color="gray.700">
+        Our team of wine experts is dedicated to bringing you the best selection of wines available. With years of experience in the industry, our sommeliers and connoisseurs are passionate about sharing their knowledge and expertise with you. Whether you're looking for recommendations, food pairings, or tasting notes, our team is here to help you navigate the world of wine with confidence and ease.
+      </Text>
+      <Text fontSize="xl" mb="8" color="gray.700">
+        Meet the faces behind Cockscrew Connoisseur and discover why we're your trusted source for exceptional wines.
+      </Text>
+
+      <Divider mb="8" />
+
+      <Heading as="h3" fontSize="3xl" mb="6" color="wine.red" fontFamily="Rancho">
+        Our Commitment to Quality
+      </Heading>
+      <Text fontSize="xl" mb="8" color="gray.700">
+        Quality is at the heart of everything we do. From our rigorous selection process to our commitment to customer satisfaction, we hold ourselves to the highest standards in the industry. Every wine in our collection is carefully vetted to ensure it meets our strict criteria for excellence, so you can shop with confidence knowing that you're getting the best of the best.
+      </Text>
+
+      <Divider mb="8" />
+
+      <Heading as="h3" fontSize="3xl" mb="6" color="wine.red" fontFamily="Rancho">
+        Contact Us
+      </Heading>
+      <Flex alignItems="center" mb="4">
+        <Icon as={FaWineBottle} boxSize={8} color="wine.red" mr="4" />
+        <Text fontSize="xl" color="gray.700">
+          Have questions or need assistance? We're here to help! Contact our customer service team for personalized recommendations, order assistance, or any other inquiries you may have.
         </Text>
-        <Text>
-          Founded by wine lovers, for wine lovers, Corkscrew Connoisseur has been at the forefront of the wine industry since 2024. We pride ourselves on our curated selection, sourced from renowned vineyards across the globe.
-        </Text>
-        <Text>
-          Whether you're a seasoned connoisseur or new to the wine world, we're here to guide you through your wine journey. Explore our collection and find your perfect bottle today.
-        </Text>
-      </VStack>
-    </Container>
+      </Flex>
+      <Text fontSize="lg" mb="8" color="gray.700">
+        Email: <Text as="span" color="wine.red">info@cockscrewconnoisseur.com</Text>
+        <br />
+        Phone: <Text as="span" color="wine.red">1-800-WINE-LOVE</Text>
+      </Text>
+    </Box>
   );
-};
+}
 
 export default About;
